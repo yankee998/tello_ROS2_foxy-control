@@ -1,0 +1,13 @@
+package.xml
+setup.cfg
+setup.py
+models/tello/model.config
+models/tello/model.sdf
+resource/tello_description
+tello_description/__init__.py
+tello_description.egg-info/PKG-INFO
+tello_description.egg-info/SOURCES.txt
+tello_description.egg-info/dependency_links.txt
+tello_description.egg-info/requires.txt
+tello_description.egg-info/top_level.txt
+tello_description.egg-info/zip-safe

@@ -1,0 +1,27 @@
+[1.095s] Invoking command in '/home/yankee/tello_ws/build/tello_description': PYTHONPATH=/home/yankee/tello_ws/build/tello_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yankee/tello_ws/install/tello_description/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/yankee/tello_ws/build/tello_description/build --no-deps symlink_data
+[1.377s] running develop
+[1.535s] running egg_info
+[1.535s] creating tello_description.egg-info
+[1.535s] writing tello_description.egg-info/PKG-INFO
+[1.535s] writing dependency_links to tello_description.egg-info/dependency_links.txt
+[1.536s] writing requirements to tello_description.egg-info/requires.txt
+[1.536s] writing top-level names to tello_description.egg-info/top_level.txt
+[1.537s] writing manifest file 'tello_description.egg-info/SOURCES.txt'
+[1.576s] reading manifest file 'tello_description.egg-info/SOURCES.txt'
+[1.577s] writing manifest file 'tello_description.egg-info/SOURCES.txt'
+[1.621s] running build_ext
+[1.621s] Creating /home/yankee/tello_ws/install/tello_description/lib/python3.8/site-packages/site.py
+[1.624s] Creating /home/yankee/tello_ws/install/tello_description/lib/python3.8/site-packages/tello-description.egg-link (link to .)
+[1.626s] 
+[1.626s] Installed /home/yankee/tello_ws/build/tello_description
+[1.626s] running symlink_data
+[1.627s] creating /home/yankee/tello_ws/install/tello_description/share/ament_index
+[1.627s] creating /home/yankee/tello_ws/install/tello_description/share/ament_index/resource_index
+[1.627s] creating /home/yankee/tello_ws/install/tello_description/share/ament_index/resource_index/packages
+[1.627s] symbolically linking /home/yankee/tello_ws/build/tello_description/resource/tello_description -> /home/yankee/tello_ws/install/tello_description/share/ament_index/resource_index/packages
+[1.628s] symbolically linking /home/yankee/tello_ws/build/tello_description/package.xml -> /home/yankee/tello_ws/install/tello_description/share/tello_description
+[1.628s] creating /home/yankee/tello_ws/install/tello_description/share/tello_description/models
+[1.628s] creating /home/yankee/tello_ws/install/tello_description/share/tello_description/models/tello
+[1.628s] symbolically linking /home/yankee/tello_ws/build/tello_description/models/tello/model.sdf -> /home/yankee/tello_ws/install/tello_description/share/tello_description/models/tello
+[1.628s] symbolically linking /home/yankee/tello_ws/build/tello_description/models/tello/model.config -> /home/yankee/tello_ws/install/tello_description/share/tello_description/models/tello
+[1.686s] Invoked command in '/home/yankee/tello_ws/build/tello_description' returned '0': PYTHONPATH=/home/yankee/tello_ws/build/tello_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yankee/tello_ws/install/tello_description/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/yankee/tello_ws/build/tello_description/build --no-deps symlink_data

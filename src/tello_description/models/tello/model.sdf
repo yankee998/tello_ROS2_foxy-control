@@ -1,0 +1,246 @@
+<?xml version='1.0'?>
+<sdf version='1.8'>
+  <model name='tello'>
+    <!-- Base link (drone body) -->
+    <link name='base_link'>
+      <!-- Inertial properties (approximate Tello mass: 80g) -->
+      <inertial>
+        <mass>0.08</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+
+      <!-- Collision geometry -->
+      <collision name='base_collision'>
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <!-- Visual geometry -->
+      <visual name='base_visual'>
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.05</size> <!--use simple geometry first-->
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.8 0.8 0.8 1</ambient>
+          <diffuse>0.8 0.8 0.8 1</diffuse>
+          <specular>0.5 0.5 0.5 1</specular>
+        </material>
+      </visual>
+
+      <!-- Camera sensor (for inventory scanning) -->
+      <sensor name='camera' type='camera'>
+        <camera>
+          <horizontal_fov>1.5708</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>100</far>
+          </clip>
+        </camera>
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <plugin name='camera_driver' filename='libgazebo_ros_camera.so'>
+          <ros>
+            <namespace>/tello</namespace>
+          </ros>
+          <camera_name>camera</camera_name>
+          <frame_name>base_link</frame_name>
+          <hack_baseline>0.07</hack_baseline>
+        </plugin>
+      </sensor>
+    </link>
+
+    <!-- Propellers (4 motors) -->
+    <!--Front-left (CCW)-->
+    <link name='propeller_1'>
+      <pose>0.05 0.05 0.02 0 0 0</pose>
+      <inertial>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>0.00001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00001</iyy>
+          <iyz>0</iyz>
+          <izz>0.00001</izz>
+        </inertia>
+      </inertial>
+      <visual name='propeller_1_visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+    <!--Front-rigth (CW)-->
+    <link name='propeller_2'>
+      <pose>0.05 -0.05 0.02 0 0 0</pose>
+      <inertial>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>0.00001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00001</iyy>
+          <iyz>0</iyz>
+          <izz>0.00001</izz>
+        </inertia>
+      </inertial>
+      <visual name='propeller_2_visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+    <!--Back-left (CW)-->
+    <link name='propeller_3'>
+      <pose>-0.05 0.05 0.02 0 0 0</pose>
+      <inertial>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>0.00001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00001</iyy>
+          <iyz>0</iyz>
+          <izz>0.00001</izz>
+        </inertia>
+      </inertial>
+      <visual name='propeller_3_visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+    <!--Back-right (CCW)-->
+    <link name='propeller_4'>
+      <pose>-0.05 -0.05 0.02 0 0 0</pose>
+      <inertial>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>0.00001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00001</iyy>
+          <iyz>0</iyz>
+          <izz>0.00001</izz>
+        </inertia>
+      </inertial>
+      <visual name='propeller_4_visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+
+    <!-- Motor joints (revolute joints for spinning propellers) -->
+    <joint name='motor_1' type='revolute'>
+      <parent>base_link</parent>
+      <child>propeller_1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e9</lower>
+          <upper>1e9</upper>
+        </limit>
+        <dynamics>
+          <damping>0.001</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name='motor_2' type='revolute'>
+      <parent>base_link</parent>
+      <child>propeller_2</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1e9</lower>
+          <upper>1e9</upper>
+        </limit>
+        <dynamics>
+          <damping>0.001</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name='motor_3' type='revolute'>
+      <parent>base_link</parent>
+      <child>propeller_3</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1e9</lower>
+          <upper>1e9</upper>
+        </limit>
+        <dynamics>
+          <damping>0.001</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name='motor_4' type='revolute'>
+      <parent>base_link</parent>
+      <child>propeller_4</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e9</lower>
+          <upper>1e9</upper>
+        </limit>
+        <dynamics>
+          <damping>0.001</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- ROS control plugin -->
+    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+      <robotNamespace>/tello</robotNamespace>
+      <controlPeriod>0.001</controlPeriod>
+    </plugin>
+  </model>
+</sdf>
